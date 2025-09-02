@@ -1,0 +1,55 @@
+[package]
+name = "matrix-chat-system"
+version = "0.1.0"
+edition = "2021"
+description = "Matrix-based chat system with OIDC integration"
+authors = ["Matrix Chat Team"]
+
+[dependencies]
+# Matrix/Conduit integration - using Ruma for Matrix types
+ruma-common = "0.12"
+ruma-events = "0.27"
+matrix-sdk = "0.7"
+tokio = { version = "1.0", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Authentication (Zitadel OIDC integration)
+jsonwebtoken = "9.0"
+oauth2 = "4.4"
+openidconnect = "3.5"
+uuid = { version = "1.0", features = ["v4", "serde"] }
+
+# Web framework (Axum for REST API)
+axum = { version = "0.7", features = ["macros"] }
+tower = "0.4"
+tower-http = { version = "0.5", features = ["cors", "auth", "trace"] }
+
+# HTTP client for federation
+reqwest = { version = "0.11", features = ["json"] }
+
+# Time handling
+chrono = { version = "0.4", features = ["serde"] }
+
+# Async traits
+async-trait = "0.1"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Configuration
+config = "0.14"
+
+# Development dependencies
+[dev-dependencies]
+tokio-test = "0.4"
+tower-test = "0.4"
+
+[[bin]]
+name = "chat-server"
+path = "src/main.rs"
